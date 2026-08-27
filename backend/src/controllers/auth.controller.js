@@ -186,7 +186,7 @@ export const googleCallback = async (req, res) => {
 
 
 
-        return res.redirect(config.NODE_ENV ? "https://snitch-rb7o.onrender.com" : "/");
+        return res.redirect(config.NODE_ENV ? "https://snitch-rb7o.onrender.com/" : "/");
 
     } catch (err) {
         console.log(err)
