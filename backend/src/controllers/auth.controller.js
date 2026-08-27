@@ -13,7 +13,13 @@ function generateToken({ user, res, message }) {
         expiresIn: "1d"
     })
 
-    res.cookie("token", token)
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,        // ZAROORI: Kyunki Vercel aur Render HTTPS use karte hain
+        sameSite: "none",    // ZAROORI: Yeh browser ko cross-domain cookie allow karne deta hai
+        maxAge: 1 * 24 * 60 * 60 * 1000 // 1 din tak login rahega
+    });
 
     return res.status(200).json({
         message,
