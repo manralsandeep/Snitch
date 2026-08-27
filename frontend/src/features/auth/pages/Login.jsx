@@ -72,7 +72,7 @@ const Login = () => {
                         {/* Brand */}
                         <span
                             className="text-sm font-medium tracking-[0.35em] uppercase"
-                            style={{ fontFamily: "'Cormorant Garamond', serif", color: '#C9A96E', letterSpacing: '0.35em' }}
+                            style={{ fontFamily: "'Cormorant Garamond', serif", color: "white" , letterSpacing: '0.35em' }}
                         >
                             Snitch.
                         </span>

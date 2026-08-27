@@ -18,10 +18,10 @@ app.use(express.json())
 
 
 app.use(cors(
-//     {
-//     // origin: "http://localhost:5173",
-//     // credentials: true
-// }
+    {
+        origin: "https://snitch-o4jyhmedy-sandeep-4655.vercel.app",
+        credentials: true
+    }
 ))
 
 app.use(cookieParser())
@@ -40,5 +40,5 @@ passport.use(new GoogleStrategy({
 app.use("/api/auth", authRouter)
 app.use("/api/products", productRouter)
 app.use("/api/cart", cartRouter)
-app.use("/api/orders" ,orderRouter)
+app.use("/api/orders", orderRouter)
 export default app 
