@@ -178,12 +178,12 @@ export const googleCallback = async (req, res) => {
             role: user.role
 
         }, config.JWT_SECRET, {
-            expiresIn: "7d"
+            expiresIn: "1d"
         })
 
 
         // res.cookie("token", token)
-        
+
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,        // ZAROORI: Kyunki Vercel aur Render HTTPS use karte hain
