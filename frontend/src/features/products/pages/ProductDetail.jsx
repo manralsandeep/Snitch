@@ -356,6 +356,7 @@ const ProductDetail = () => {
                                     {activeVariant?.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                                 </button>
 
+                                {/* 🚀 BUG FIXED HERE - Added Try Catch for the Checkout API Error */}
                                 <button
                                     className="w-full py-4 text-[11px] uppercase tracking-[0.25em] font-medium transition-all duration-300 border disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                                     disabled={activeVariant?.stock === 0}
@@ -365,17 +366,26 @@ const ProductDetail = () => {
                                         color: '#1b1c1a',
                                         fontFamily: "'Inter', sans-serif"
                                     }}
-                                    onClick={() => {
-                                        handleCheckout(
-                                            () => {
-                                                return handleCreateSingleOrder({
-                                                    productId: product._id,
-                                                    variantId: activeVariant._id
-                                                })
-                                            }
-                                            , handleVerifySingleOrder)
+                                    onClick={async () => {
+                                        try {
+                                            await handleCheckout(
+                                                async () => {
+                                                    try {
+                                                        return await handleCreateSingleOrder({
+                                                            productId: product._id,
+                                                            variantId: activeVariant._id
+                                                        });
+                                                    } catch (err) {
+                                                        toast.error('Please login to proceed with the purchase.');
+                                                        throw err;
+                                                    }
+                                                },
+                                                handleVerifySingleOrder
+                                            );
+                                        } catch (error) {
+                                            console.error("Checkout error:", error);
+                                        }
                                     }}
-
                                     onMouseEnter={e => {
                                         if (activeVariant?.stock > 0) {
                                             e.currentTarget.style.borderColor = '#C9A96E';
