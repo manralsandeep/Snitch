@@ -19,7 +19,8 @@ app.use(express.json())
 
 app.use(cors(
     {
-        origin: "https://snitch-o4jyhmedy-sandeep-4655.vercel.app",
+        origin: "https://snitch-jet.vercel.app",
+        // origin:"http://localhost:5173",
         credentials: true
     }
 ))

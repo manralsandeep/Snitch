@@ -37,7 +37,7 @@ export function useProduct() {
     async function handleGetAllProducts() {
         const data = await getAllProducts()
         dispatch(setProducts(data.products))
-        console.log(data.products)
+       
     }
 
     async function handleGetProductById(productId) {
