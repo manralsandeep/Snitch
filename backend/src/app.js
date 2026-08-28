@@ -1,4 +1,5 @@
 import express from "express"
+import helmet from "helmet"
 import authRouter from "./routes/auth.routes.js"
 import productRouter from "./routes/product.routes.js"
 import cartRouter from "./routes/cart.routes.js"
@@ -11,6 +12,7 @@ import { config } from "./config/config.js"
 import cors from "cors"
 const app = express()
 
+app.use(helmet())
 app.use(passport.initialize());
 
 app.use(morgan("dev"))
@@ -31,7 +33,7 @@ passport.use(new GoogleStrategy({
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET,
     callbackURL: '/api/auth/google/callback',
-    proxy:true
+    proxy: true
 }, (accessToken, refreshToken, profile, done) => {
     // Here, you would typically find or create a user in your database
     // For this example, we'll just return the profile
